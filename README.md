@@ -1,42 +1,42 @@
-# YOLO12 VisDrone Project
+# YOLO12 VisDrone 项目
 
-This repository contains code and trained models for drone/object detection using YOLO12 on the VisDrone dataset.
+本仓库包含使用YOLO12在VisDrone数据集上进行无人机/目标检测的代码和训练模型。
 
-## Project Structure
+## 项目结构
 
-- `dji_async_pro_1280.py`, `dji_async_pro_960.py`: Main inference scripts for DJI drone applications
-- `dji_turbo_multiprocessing.py`: Multiprocessing implementation for optimized performance
-- `train_visdrone_yolo12.py`: Training script for YOLO12 on VisDrone dataset
-- `test.yaml`: Configuration file for testing
-- `yolo11n.pt`, `yolo12n.pt`: Pre-trained model weights
-- `DJI_VisDrone/`: Contains training results, weights, and evaluation metrics
+- `dji_async_pro_1280.py`, `dji_async_pro_960.py`: DJI无人机应用的主要推理脚本
+- `dji_turbo_multiprocessing.py`: 用于优化性能的多进程实现
+- `train_visdrone_yolo12.py`: 在VisDrone数据集上训练YOLO12的脚本
+- `test.yaml`: 测试配置文件
+- `yolo11n.pt`, `yolo12n.pt`: 预训练模型权重
+- `DJI_VisDrone/`: 包含训练结果、权重和评估指标
 
-## Key Features
+## 主要特性
 
-- Optimized for drone-based object detection
-- Includes multiple trained models with different resolutions (1280, 960)
-- Evaluation metrics and visualization tools
-- Multiprocessing support for real-time inference
+- 针对基于无人机的目标检测进行了优化
+- 包含不同分辨率的多个训练模型（1280, 960）
+- 评估指标和可视化工具
+- 支持多进程实时推理
 
-## Usage
+## 使用方法
 
-Run the inference scripts to perform detection on video streams or image sequences:
+运行推理脚本来对视频流或图像序列执行检测：
 
 ```bash
 python dji_async_pro_1280.py
 ```
 
-or
+或
 
 ```bash
 python dji_async_pro_960.py
 ```
 
-## Contents
+## 内容说明
 
-The `DJI_VisDrone/` directory contains:
+`DJI_VisDrone/` 目录包含：
 
-- Trained model weights
-- Training logs and metrics
-- Evaluation results (confusion matrices, precision/recall curves)
-- Sample output images
+- 训练好的模型权重
+- 训练日志和指标
+- 评估结果（混淆矩阵、精确率/召回率曲线）
+- 示例输出图像
