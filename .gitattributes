@@ -1,0 +1,2 @@
+yolo12l.pt filter=lfs diff=lfs merge=lfs -text
+yolo12x.pt filter=lfs diff=lfs merge=lfs -text
