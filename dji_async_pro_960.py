@@ -9,8 +9,8 @@ from ultralytics import YOLO
 from datetime import datetime
 
 # --- 1. 配置参数 ---
-VIDEO_PATH = "3.mp4"
-MODEL_PATH = "DJI_VisDrone/yolo12n_3070Ti_9602/weights/best.pt"
+VIDEO_PATH = "DJI_20251231222628_0001_V.mp4"
+MODEL_PATH = "DJI_VisDrone_12n/yolo12n_3070Ti_9602/weights/best.pt"
 OUTPUT_PATH = "Deep_Optimized_DJI_960test1.mp4"
 BATCH_SIZE = 4  # 3070Ti 8G 显存可以尝试 4-8，越大显存占用越高，速度越快
 
@@ -18,7 +18,7 @@ BATCH_SIZE = 4  # 3070Ti 8G 显存可以尝试 4-8，越大显存占用越高，
 class DJIProcessor:
     def __init__(self, video_path, model_path):
         self.device = torch.device("cuda:0")
-        self.model = YOLO("DJI_VisDrone/yolo12n_3070Ti_9602/weights/best.pt").to(self.device)
+        self.model = YOLO("DJI_VisDrone_12s/yolo12s_3070Ti_960/weights/best.pt").to(self.device)
 
         # 视频元数据
         cap = cv2.VideoCapture(video_path)
@@ -56,10 +56,10 @@ class DJIProcessor:
             device=self.device,
             stream=True,
             half=True,  # 强烈建议开启：3070Ti 下不损失精度且显著降温、提速
-            conf=0.1,  # 权衡值：0.15 可能会导致画面背景“闪烁”虚警，0.2 更稳
-            iou=0.9,  # 保持 0.7：密集场景必须放宽 IOU，防止并排的人被剔除
+            conf=0.15,  # 权衡值：0.15 可能会导致画面背景“闪烁”虚警，0.2 更稳
+            iou=0.7,  # 保持 0.7：密集场景必须放宽 IOU，防止并排的人被剔除
             agnostic_nms=False,  # 关键：设为 False。如果行人和自行车重叠，两者都会保留
-            max_det=3000,  # 必须调大：VisDrone 4K 场景一帧可能有几百个目标，默认 300 可能不够
+            max_det=4000,  # 必须调大：VisDrone 4K 场景一帧可能有几百个目标，默认 300 可能不够
             augment=False,  # 实时推理建议 False，如果追求极致精度且不计成本可设为 True
             classes=[0, 1, 2],  # 如果你只关心车和人，可以指定类别索引，如 [0, 1, 2]
             verbose=False

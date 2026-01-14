@@ -11,8 +11,8 @@ from datetime import datetime
 # --- 1. 配置参数 ---
 # 建议确保路径指向你表现最好的 9604 文件夹权重
 VIDEO_PATH = "3.mp4"
-MODEL_PATH = "DJI_VisDrone/yolo12n_3070Ti_1280/weights/1280best.pt"
-OUTPUT_PATH = "Deep_Optimized_DJI_1280test01.mp4"
+MODEL_PATH = "DJI_VisDrone_12s/yolo12s_3070Ti_960/weights/best.pt"
+OUTPUT_PATH = "12s_out.mp4"
 
 
 class DJIProcessor:
@@ -47,11 +47,11 @@ class DJIProcessor:
             stream=True,
             half=True,  # 强烈建议开启：3070Ti 下不损失精度且显著降温、提速
             conf=0.15,  # 权衡值：0.15 可能会导致画面背景“闪烁”虚警，0.2 更稳
-            iou=0.9,  # 保持 0.7：密集场景必须放宽 IOU，防止并排的人被剔除
+            iou=0.7,  # 保持 0.7：密集场景必须放宽 IOU，防止并排的人被剔除
             agnostic_nms=False,  # 关键：设为 False。如果行人和自行车重叠，两者都会保留
-            max_det=2000,  # 必须调大：VisDrone 4K 场景一帧可能有几百个目标，默认 300 可能不够
+            max_det=4000,  # 必须调大：VisDrone 4K 场景一帧可能有几百个目标，默认 300 可能不够
             augment=False,  # 实时推理建议 False，如果追求极致精度且不计成本可设为 True
-            classes=None,  # 如果你只关心车和人，可以指定类别索引，如 [0, 1, 2]
+            classes=[0, 1, 2],  # 如果你只关心车和人，可以指定类别索引，如 [0, 1, 2]
             verbose=False
         )
 

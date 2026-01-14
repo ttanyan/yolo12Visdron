@@ -103,7 +103,7 @@ if __name__ == "__main__":
     task_q = Queue(maxsize=128)
     result_q = Queue(maxsize=128)
 
-    MODEL_WT = "DJI_VisDrone/yolo12n_3070Ti_1280/weights/960best.pt"
+    MODEL_WT = "DJI_VisDrone_12n/yolo12n_3070Ti_1280/weights/960best.pt"
 
     # 启动多进程架构
     p_read = Process(target=frame_reader, args=(VIDEO_PATH, task_q))
