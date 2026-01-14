@@ -2,7 +2,7 @@ from ultralytics import YOLO
 
 def train():
 
-    model = YOLO("yolo12s.pt")  # n s l m x
+    model = YOLO("yolo12s.pt")  # n s m l x
 
     # 针对大疆 4K 视频流优化
     model.train(
